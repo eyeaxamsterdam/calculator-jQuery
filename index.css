@@ -1,0 +1,81 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+html {
+  width: 300px;
+  margin: 75px auto;
+  font-family: "Epilogue", sans-serif;
+}
+
+.calcdisplay {
+  font-size: 52px;
+  background-color: rgb(73, 68, 68);
+  border: 2px solid black;
+  border-bottom: 1px solid black;
+  text-align: right;
+  padding: 0 8px;
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+  color: whitesmoke;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.calc-btn {
+  width: 25%;
+  border: 1px solid black;
+  padding: 23px;
+  background-color: rgb(207, 209, 209);
+  font-size: 26px;
+}
+
+.calc-row {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.zero-calc-btn,
+.clear-calc-btn {
+  width: 50%;
+}
+
+.zero-calc-btn {
+  border-radius: 0 0 0 10px;
+}
+
+.equals-btn {
+  border-radius: 0 0 10px 0;
+}
+
+.calc-operator {
+  background-color: rgb(230, 100, 14);
+  color: whitesmoke;
+  font-weight: 900;
+  border-right: 2px solid black;
+}
+
+.calc-btn:hover {
+  background-color: rgba(0, 0, 246, 0.76);
+  color: white;
+  cursor: pointer;
+}
+
+.calc-operator:hover {
+  background-color: seagreen;
+  color: black;
+}
+
+.collumn-one {
+  border-left: 2px solid black;
+}
