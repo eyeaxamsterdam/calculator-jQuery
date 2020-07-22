@@ -31,12 +31,17 @@ let decimalclicked = () => {
 }
 
 
+let addition = () => {
+  previousdisplayvalue = calcDisplay;
+      $(".calcdisplay").text('');
+}
+
+
 let operator = (e) => {
   switch(e) {
     case '+' : 
       console.log('plus');
-      previousdisplayvalue = calcDisplay;
-      $(".calcdisplay").text('');
+      addition();
     break;
     case '-' : console.log('minus');
     break;
@@ -45,9 +50,10 @@ let operator = (e) => {
     case '÷' : console.log('devided');
     break;
     case '=' : 
-      console.log('equals');
-      console.log(typeof(previousdisplayvalue), typeof(calcDisplay));
-      break;
+      let a = parseInt(previousdisplayvalue);
+      let b = parseInt(calcDisplay);
+      $('.calcdisplay').text(a + b);
+    break;
   }
 }
 
@@ -89,6 +95,7 @@ let switchkeypressed = (e) => {
     case 13: 
     case 187: clickednum = '='; operator(clickednum);
     break;
+    case 12:
     case 67: clickClear();
     break;
   }
