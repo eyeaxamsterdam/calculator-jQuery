@@ -1,66 +1,91 @@
 "use strict";
 
-
 let calcDisplay;
 let clickednum;
 let previousdisplayvalue;
 let evaluationstring;
 
-
 let clickNum = () => {
   calcDisplay === "0"
-    ? $(".calcdisplay").text(clickednum)
-    : $(".calcdisplay").append(clickednum)
+    ? $(".maindisplay").text(clickednum)
+    : $(".maindisplay").append(clickednum)
 }
-
 
 let clickBackspace = () => {
-  $(".calcdisplay").text().length === 1
-    ? $(".calcdisplay").text(0)
-    : $(".calcdisplay").text($(".calcdisplay").text().slice(0, -1));
+  $(".maindisplay").text().length === 1
+    ? $(".maindisplay").text(0)
+    : $(".maindisplay").text($(".maindisplay").text().slice(0, -1));
 }
-
 
 let clickClear = () => {
-  $(".calcdisplay").text(0);
+  $(".maindisplay").text(0);
 }
-
 
 let decimalclicked = () => {
-  !$(".calcdisplay").text().includes(".") && $(".calcdisplay").append(".");
+  !$(".maindisplay").text().includes(".") && $(".maindisplay").append(".");
 }
-
 
 let addition = () => {
   previousdisplayvalue = calcDisplay;
-      $(".calcdisplay").text('');
+      $(".maindisplay").text(''); 
+      $('.littledisplay').text(previousdisplayvalue + operatorclicked);  
 }
-
 
 let operator = (e) => {
   switch(e) {
     case '+' : 
-      console.log('plus');
-      addition();
+      console.log(e);
     break;
     case '-' : console.log('minus');
+    console.log(e);
     break;
     case '×' : console.log('times');
+    console.log(e);
     break;
     case '÷' : console.log('devided');
+    console.log(e);
     break;
     case '=' : 
-      let a = parseInt(previousdisplayvalue);
-      let b = parseInt(calcDisplay);
-      $('.calcdisplay').text(a + b);
+    console.log(previousdisplayvalue, calcDisplay);
     break;
   }
 }
 
 
 
+
+$(".decimal-btn").click(() => {
+  decimalclicked();
+});
+
+$(".calc-btn-num").click((e)=> {
+  calcDisplay = $(".maindisplay").text();
+  clickednum = $(e.target).text();
+  clickNum();
+});
+
+$(".back-calc-btn").click(() => {
+  clickBackspace();
+});
+
+$(".clear-calc-btn").click(() => clickClear());
+
+$(".calc-operator").on("click", (e)=> {
+  calcDisplay = $(".maindisplay").text();
+  let operatorclicked = $(e.target).text();
+  console.log(operatorclicked);
+  operator(operatorclicked);
+});
+
+$(window).keydown((e) => {
+  let keypressed = e.which 
+  keypressed === 8 ? clickBackspace() : switchkeypressed(keypressed);
+});
+
+
+//keypad shit
 let switchkeypressed = (e) => {
-  calcDisplay = $(".calcdisplay").text();
+  calcDisplay = $(".maindisplay").text();
   switch(e) {
     case 48: clickednum = 0; clickNum();
     break;
@@ -100,86 +125,3 @@ let switchkeypressed = (e) => {
     break;
   }
 }
-
-
-$(".decimal-btn").click(() => {
-  decimalclicked();
-});
-
-$(".calc-btn-num").click((e)=> {
-  calcDisplay = $(".calcdisplay").text();
-  clickednum = $(e.target).text();
-  clickNum();
-});
-
-$(".back-calc-btn").click(() => {
-  clickBackspace();
-});
-
-$(".clear-calc-btn").click(() => clickClear());
-
-$(".calc-operator").on("click", (e)=> {
-  calcDisplay = $(".calcdisplay").text();
-  let operatorClicked = $(e.target).text();
-  operator(operatorClicked);
-});
-
-$(window).keydown((e) => {
-  let keypressed = e.which 
-  keypressed === 8 ? clickBackspace() : switchkeypressed(keypressed);
-});
-
-
-
-
-
-/* 
-let numberclickevent = (e) => {
-  let calcdisplayvalue = $(".calcdisplay").text();
-  let clickednum = $(e.target).text();
-  calcdisplayvalue === "0"
-    ? $(".calcdisplay").text(clickednum)
-    : $(".calcdisplay").append(clickednum);
-}
-
-let performOperation = (e) => {
-  let previousdisplayvalue;
-  let calcdisplayvalue = $(".calcdisplay").text();
-  console.log(calcdisplayvalue);
-  $(".calcdisplay").text("");
-  if ($(e.target).text() === "+") {
-    previousdisplayvalue = calcdisplayvalue;
-  }
-};
-
-
-
-
-$(".calc-btn-num").click(numberclickevent);
-
-$(".clear-calc-btn").click(() => $(".calcdisplay").text(0));
-
-$(".back-calc-btn").click(() => {
-  $(".calcdisplay").text().length === 1
-    ? $(".calcdisplay").text(0)
-    : $(".calcdisplay").text($(".calcdisplay").text().slice(0, -1));
-});
-
-
-
-$(".calc-operator").on("click", performOperation);
- 
-$(".plus-calc-btn").click(performOperation);
-
-$(window).on('keydown', (e) => {
-  let calcdisplayvalue = $(".calcdisplay").text();
-  if (e.which === 49) {
-    let clickednum = 1; 
-    calcdisplayvalue === "0"
-    ? $(".calcdisplay").text(clickednum)
-    : $(".calcdisplay").append(clickednum);
-  } else { 
-    console.log(e.which)
-  }
-});
- */

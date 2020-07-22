@@ -16,13 +16,22 @@ html {
 }
 
 .calcdisplay {
-  font-size: 52px;
   background-color: rgb(73, 68, 68);
   border: 2px solid black;
-  border-bottom: 1px solid black;
-  text-align: right;
-  padding: 0 8px;
+  border-bottom: 1px solid black;  
+  padding: 8px;
   height: 100px;
+}
+
+.littledisplay {
+  font-size: smaller;
+  text-align: right;
+  color: rgb(207, 209, 209)
+}
+
+.maindisplay {
+  font-size: 52px;
+  text-align: right;
   line-height: 100px;
   white-space: nowrap;
   color: whitesmoke;
