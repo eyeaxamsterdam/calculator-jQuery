@@ -19,34 +19,40 @@ let clickBackspace = () => {
 
 let clickClear = () => {
   $(".maindisplay").text(0);
+  $('.littledisplay').text('');
 }
 
 let decimalclicked = () => {
   !$(".maindisplay").text().includes(".") && $(".maindisplay").append(".");
 }
 
-let addition = () => {
+let addition = (operatorclicked) => {
   previousdisplayvalue = calcDisplay;
       $(".maindisplay").text(''); 
-      $('.littledisplay').text(previousdisplayvalue + operatorclicked);  
+      $('.littledisplay').text(previousdisplayvalue + " " + operatorclicked);  
 }
 
 let operator = (e) => {
   switch(e) {
     case '+' : 
       console.log(e);
+      addition(e);
     break;
-    case '-' : console.log('minus');
-    console.log(e);
+    case '−' : 
+      console.log(e);
+      addition('-');
     break;
-    case '×' : console.log('times');
-    console.log(e);
+    case '×' : 
+      console.log(e);
+      addition('*')
     break;
-    case '÷' : console.log('devided');
-    console.log(e);
+    case '÷' : 
+      console.log(e);
+      addition('/')
     break;
     case '=' : 
-    console.log(previousdisplayvalue, calcDisplay);
+      $('.maindisplay').text((eval($('.littledisplay').text() + calcDisplay)));
+      $('.littledisplay').text($('.littledisplay').text() + calcDisplay);
     break;
   }
 }
@@ -68,22 +74,25 @@ $(".back-calc-btn").click(() => {
   clickBackspace();
 });
 
+
 $(".clear-calc-btn").click(() => clickClear());
 
 $(".calc-operator").on("click", (e)=> {
   calcDisplay = $(".maindisplay").text();
   let operatorclicked = $(e.target).text();
-  console.log(operatorclicked);
   operator(operatorclicked);
 });
 
+
+
+
+
+//keypad shit
 $(window).keydown((e) => {
   let keypressed = e.which 
   keypressed === 8 ? clickBackspace() : switchkeypressed(keypressed);
 });
 
-
-//keypad shit
 let switchkeypressed = (e) => {
   calcDisplay = $(".maindisplay").text();
   switch(e) {
