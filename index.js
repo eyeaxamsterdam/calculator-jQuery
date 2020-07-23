@@ -1,5 +1,6 @@
 "use strict";
 
+
 let calcDisplay;
 let clickednum;
 let previousdisplayvalue;
@@ -38,7 +39,7 @@ let operator = (e) => {
       console.log(e);
       addition(e);
     break;
-    case '−' : 
+    case '-' : 
       console.log(e);
       addition('-');
     break;
@@ -56,9 +57,6 @@ let operator = (e) => {
     break;
   }
 }
-
-
-
 
 $(".decimal-btn").click(() => {
   decimalclicked();
@@ -82,7 +80,6 @@ $(".calc-operator").on("click", (e)=> {
   let operatorclicked = $(e.target).text();
   operator(operatorclicked);
 });
-
 
 
 
